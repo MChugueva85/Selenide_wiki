@@ -21,7 +21,5 @@ public class SelenideWikiTests {
 
         open("/automation-practice-form");
 
-
-
     }
 }
