@@ -8,7 +8,7 @@ import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class SoftAssertions {
+public class SelenideWikiTests {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
