@@ -29,26 +29,19 @@ public class WikiSelenideTests {
 // Откройте страницу SoftAssertions
         $$(".markdown-body li").findBy(text("Soft assertions")).$("a").click();
 // проверьте что внутри есть пример кода для JUnit5
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("@"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("ExtendWith"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("SoftAssertsExtension"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("class"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("class"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("Tests"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("@"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("Test"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("void"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("test"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("Configuration"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("assertionMode"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("SOFT"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("open"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("page.html"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("$"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("#first"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("should"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("visible"));
-        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("click"));
+        $("#user-content-3-using-junit5-extend-test-class").closest("div").shouldHave(text("""
+                @ExtendWith({SoftAssertsExtension.class})
+                class Tests {
+                  @Test
+                  void test() {
+                    Configuration.assertionMode = SOFT;
+                    open("page.html");
+                                
+                    $("#first").should(visible).click();
+                    $("#second").should(visible).click();
+                  }
+                }
+                """));
 
     }
 }
